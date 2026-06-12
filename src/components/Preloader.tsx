@@ -75,7 +75,7 @@ export function Preloader({ onDone }: { onDone: () => void }) {
             {WORD.split("").map((ch, i) => (
               <span
                 key={i}
-                className="pre-letter inline-block font-display font-extrabold text-bone leading-none tracking-tight text-[13vw] sm:text-[10vw] lg:text-[8vw] will-change-transform"
+                className="pre-letter inline-block font-display font-extrabold text-bone leading-none tracking-tight [font-size:clamp(1.25rem,8.2vw,8rem)] will-change-transform"
               >
                 {ch}
               </span>

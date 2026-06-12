@@ -16,7 +16,7 @@ import { featuredProducts } from "@/data/products";
 /* Hero                                                                */
 /* ------------------------------------------------------------------ */
 
-const HEADLINE = ["WE PUSH", "BUSINESS", "FORWARD"];
+const HEADLINE = ["WE PUSH", "BUSINESSES", "FORWARD"];
 
 function Hero({ ready }: { ready: boolean }) {
   const rootRef = useRef<HTMLElement>(null);
@@ -89,7 +89,7 @@ function Hero({ ready }: { ready: boolean }) {
               {line.split("").map((ch, ci) => (
                 <span
                   key={ci}
-                  className="hero-char inline-block will-change-transform text-[9.4vw] lg:text-[8.5vw]"
+                  className="hero-char inline-block will-change-transform [font-size:clamp(2rem,7.8vw,7.5rem)]"
                   style={{
                     visibility: ready ? undefined : "hidden",
                     whiteSpace: "pre",
@@ -213,8 +213,8 @@ function Manifesto() {
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-bone/10 border border-bone/10 mt-20 sm:mt-28">
           {stats.map((s, i) => (
-            <FadeIn key={s.label} delay={i * 0.08} className="bg-ink p-8 sm:p-12">
-              <p className="font-display font-extrabold text-4xl sm:text-6xl text-bone mb-2">
+            <FadeIn key={s.label} delay={i * 0.08} className="bg-ink p-6 sm:p-12">
+              <p className="font-display font-extrabold text-[2rem] sm:text-5xl lg:text-6xl text-bone mb-2 leading-none whitespace-nowrap">
                 <Counter value={s.value} suffix={s.suffix} />
               </p>
               <p className="font-body text-xs tracking-[0.25em] uppercase text-ash">
@@ -412,20 +412,35 @@ function ProductsStack() {
           </Magnetic>
         </div>
 
-        <div className="flex flex-col gap-8 lg:gap-0">
+        <div className="flex flex-col gap-0">
           {featuredProducts.map((p, i) => (
             <div
               key={p.name}
-              className="lg:sticky"
-              style={{ top: `calc(5.5rem + ${i * 2.5}rem)` }}
+              className="sticky"
+              style={{ top: `calc(5.25rem + ${i * 2.5}rem)` }}
             >
               <div
-                className="relative overflow-hidden rounded-3xl border border-bone/10 bg-ink-2 p-8 sm:p-14 lg:min-h-[28rem] flex flex-col lg:flex-row gap-10 lg:items-center"
+                className="relative overflow-hidden rounded-3xl border border-bone/10 p-8 sm:p-14 lg:min-h-[28rem] flex flex-col gap-8 lg:grid lg:grid-cols-[1fr_18rem] lg:gap-x-14 lg:gap-y-8 lg:items-center"
                 style={{
-                  background: `linear-gradient(135deg, ${p.accentSoft} 0%, #0e0517 55%)`,
+                  background: `linear-gradient(135deg, ${p.accentSoft} 0%, #0e0517 55%), #0e0517`,
                 }}
               >
-                <div className="flex-1">
+                {/* Logo — top on mobile, top-right on desktop */}
+                <div className="order-1 lg:col-start-2 lg:row-start-1 flex justify-center">
+                  <div
+                    className="w-32 h-32 sm:w-44 sm:h-44 rounded-3xl flex items-center justify-center border border-bone/10"
+                    style={{ background: p.accentSoft }}
+                  >
+                    <img
+                      src={p.logo}
+                      alt={`${p.name} logo`}
+                      className="h-16 sm:h-24 w-auto object-contain"
+                    />
+                  </div>
+                </div>
+
+                {/* Details — under the logo on mobile, left column on desktop */}
+                <div className="order-2 lg:col-start-1 lg:row-start-1 lg:row-span-2">
                   <p className="font-body text-xs tracking-[0.3em] uppercase mb-4" style={{ color: p.accent }}>
                     {p.tagline}
                   </p>
@@ -447,29 +462,18 @@ function ProductsStack() {
                   </div>
                 </div>
 
-                <div className="flex flex-col items-center gap-8 lg:w-72 shrink-0">
-                  <div
-                    className="w-36 h-36 sm:w-44 sm:h-44 rounded-3xl flex items-center justify-center border border-bone/10"
-                    style={{ background: p.accentSoft }}
-                  >
-                    <img
-                      src={p.logo}
-                      alt={`${p.name} logo`}
-                      className="h-20 sm:h-24 w-auto object-contain"
-                    />
-                  </div>
-                  <div className="grid grid-cols-3 gap-6 w-full text-center">
-                    {p.stats.map((s) => (
-                      <div key={s.label}>
-                        <p className="font-display font-bold text-bone text-lg sm:text-xl">
-                          {s.value}
-                        </p>
-                        <p className="text-[10px] font-body tracking-wider uppercase text-ash mt-1">
-                          {s.label}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
+                {/* Stats — bottom on mobile, bottom-right on desktop */}
+                <div className="order-3 lg:col-start-2 lg:row-start-2 grid grid-cols-3 gap-6 w-full text-center">
+                  {p.stats.map((s) => (
+                    <div key={s.label}>
+                      <p className="font-display font-bold text-bone text-lg sm:text-xl">
+                        {s.value}
+                      </p>
+                      <p className="text-[10px] font-body tracking-wider uppercase text-ash mt-1">
+                        {s.label}
+                      </p>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>

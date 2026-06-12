@@ -132,7 +132,7 @@ export function Footer() {
 
         {/* Giant wordmark */}
         <div className="select-none pointer-events-none overflow-hidden -mb-4 sm:-mb-8" aria-hidden>
-          <p className="font-display font-extrabold text-stroke leading-none tracking-tight text-center whitespace-nowrap text-[9.2vw]">
+          <p className="font-display font-extrabold text-stroke leading-none tracking-tight text-center whitespace-nowrap [font-size:clamp(2rem,9.2vw,7.1rem)]">
             MYBIZPUSH
           </p>
         </div>

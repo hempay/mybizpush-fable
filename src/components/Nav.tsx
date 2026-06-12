@@ -55,13 +55,10 @@ export function Nav() {
     }
   }, [menuOpen]);
 
-  const scrollToContact = () => {
+  // For now, "Contact" opens the consultation (contact) popup — same as "Start a Project".
+  const openContact = () => {
     setMenuOpen(false);
-    const el = document.getElementById("contact");
-    if (el) {
-      getLenis()?.scrollTo(el, { offset: 0 });
-      if (!getLenis()) el.scrollIntoView({ behavior: "smooth" });
-    }
+    open();
   };
 
   return (
@@ -100,7 +97,7 @@ export function Nav() {
               </NavLink>
             ))}
             <button
-              onClick={scrollToContact}
+              onClick={openContact}
               className="nav-link font-body text-sm tracking-wide text-bone/80 hover:text-bone transition-colors"
             >
               Contact
@@ -161,7 +158,7 @@ export function Nav() {
           ))}
           <div className="overflow-hidden">
             <button
-              onClick={scrollToContact}
+              onClick={openContact}
               className="menu-item flex items-baseline gap-4 font-display font-bold text-5xl text-bone leading-tight will-change-transform"
             >
               <span className="text-xs font-body text-magenta tabular-nums">

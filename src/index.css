@@ -216,3 +216,12 @@ textarea:focus {
     animation: none;
   }
 }
+
+/* On touch / small screens, keep the grain texture but stop animating it —
+   the per-frame repaint of a full-screen noise layer is costly on low-end GPUs. */
+@media (max-width: 768px), (pointer: coarse) {
+  .grain::after {
+    opacity: 0.04;
+    animation: none;
+  }
+}

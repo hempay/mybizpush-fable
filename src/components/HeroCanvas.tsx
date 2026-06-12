@@ -12,6 +12,10 @@ const vertexShader = /* glsl */ `
 const fragmentShader = /* glsl */ `
   precision highp float;
 
+  #ifndef OCTAVES
+  #define OCTAVES 4
+  #endif
+
   uniform vec2 uResolution;
   uniform float uTime;
   uniform vec2 uMouse;
@@ -46,7 +50,7 @@ const fragmentShader = /* glsl */ `
   float fbm(vec2 p) {
     float f = 0.0;
     float amp = 0.55;
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < OCTAVES; i++) {
       f += amp * snoise(p);
       p *= 2.04;
       amp *= 0.5;
@@ -109,11 +113,29 @@ export function HeroCanvas({ className = "" }: { className?: string }) {
       "(prefers-reduced-motion: reduce)"
     ).matches;
 
+    // ---- Quality tier: keep the shader fun everywhere, but cheap on phones ----
+    const isMobile = window.matchMedia(
+      "(max-width: 768px), (pointer: coarse)"
+    ).matches;
+    const nav = navigator as Navigator & {
+      deviceMemory?: number;
+      hardwareConcurrency?: number;
+    };
+    const lowEnd =
+      (nav.deviceMemory !== undefined && nav.deviceMemory <= 4) ||
+      (nav.hardwareConcurrency !== undefined && nav.hardwareConcurrency <= 4);
+
+    // fewer noise octaves + lower resolution on weaker hardware
+    const octaves = isMobile && lowEnd ? 2 : isMobile ? 3 : 4;
+    const maxDpr = isMobile && lowEnd ? 0.75 : isMobile ? 1.0 : 1.6;
+    // cap to ~30fps on mobile to spare the battery/GPU
+    const frameInterval = isMobile ? 1 / 30 : 0;
+
     const renderer = new THREE.WebGLRenderer({
       antialias: false,
-      powerPreference: "high-performance",
+      powerPreference: isMobile ? "low-power" : "high-performance",
     });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.6));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, maxDpr));
     renderer.setSize(mount.clientWidth, mount.clientHeight);
     mount.appendChild(renderer.domElement);
 
@@ -133,7 +155,7 @@ export function HeroCanvas({ className = "" }: { className?: string }) {
 
     const material = new THREE.ShaderMaterial({
       vertexShader,
-      fragmentShader,
+      fragmentShader: `#define OCTAVES ${octaves}\n${fragmentShader}`,
       uniforms,
     });
     scene.add(new THREE.Mesh(new THREE.PlaneGeometry(2, 2), material));
@@ -157,10 +179,15 @@ export function HeroCanvas({ className = "" }: { className?: string }) {
     );
     observer.observe(mount);
 
+    let lastFrame = 0;
     const animate = () => {
       raf = requestAnimationFrame(animate);
       if (!visible) return;
-      uniforms.uTime.value = prefersReduced ? 10 : clock.getElapsedTime();
+      const elapsed = clock.getElapsedTime();
+      // throttle to the target frame rate on mobile
+      if (frameInterval && elapsed - lastFrame < frameInterval) return;
+      lastFrame = elapsed;
+      uniforms.uTime.value = prefersReduced ? 10 : elapsed;
       uniforms.uMouse.value.lerp(targetMouse, 0.04);
       renderer.render(scene, camera);
     };

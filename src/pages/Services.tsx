@@ -29,7 +29,7 @@ export default function ServicesPage() {
           </p>
           <RevealText
             as="h1"
-            className="font-display font-extrabold text-bone tracking-tight leading-[0.92] text-5xl sm:text-7xl lg:text-8xl mb-8"
+            className="font-display font-extrabold text-bone tracking-tight leading-[0.95] text-4xl sm:text-7xl lg:text-8xl mb-8"
             start="top 95%"
           >
             Everything your business needs

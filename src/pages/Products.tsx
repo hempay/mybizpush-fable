@@ -67,7 +67,7 @@ export default function ProductsPage() {
                       }}
                     >
                       <span
-                        className="absolute top-6 right-7 font-display font-extrabold text-6xl sm:text-7xl text-stroke tabular-nums select-none"
+                        className="absolute top-6 right-7 font-display font-extrabold text-6xl sm:text-7xl text-stroke tabular-nums select-none whitespace-nowrap"
                         aria-hidden
                       >
                         {String(index + 1).padStart(2, "0")}

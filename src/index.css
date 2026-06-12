@@ -1,0 +1,218 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ink: #08020d;
+  --bone: #f4eff7;
+  --magenta: #d400d1;
+  --volt: #5b30ff;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #3a2150 var(--ink);
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  background: var(--ink);
+  color: var(--bone);
+  font-family: "Space Grotesk", sans-serif;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--magenta);
+  color: var(--ink);
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--ink);
+}
+::-webkit-scrollbar-thumb {
+  background: #3a2150;
+  border-radius: 3px;
+}
+
+/* ---- text utilities ---- */
+.text-gradient {
+  background: linear-gradient(100deg, #e83cdf 0%, #8d5bff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.text-stroke {
+  -webkit-text-stroke: 1px rgba(244, 239, 247, 0.35);
+  color: transparent;
+}
+
+.text-stroke-magenta {
+  -webkit-text-stroke: 1px rgba(212, 0, 209, 0.6);
+  color: transparent;
+}
+
+/* ---- film grain overlay ---- */
+.grain::after {
+  content: "";
+  position: fixed;
+  inset: -100%;
+  z-index: 9990;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.05;
+  animation: grain-shift 0.9s steps(4) infinite;
+}
+
+@keyframes grain-shift {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(-2%, 3%); }
+  50% { transform: translate(3%, -2%); }
+  75% { transform: translate(-3%, -3%); }
+  100% { transform: translate(2%, 2%); }
+}
+
+/* ---- custom cursor ---- */
+@media (pointer: fine) {
+  .cursor-dot,
+  .cursor-ring {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    pointer-events: none;
+    border-radius: 9999px;
+    will-change: transform;
+  }
+  .cursor-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--magenta);
+  }
+  .cursor-ring {
+    width: 36px;
+    height: 36px;
+    border: 1px solid rgba(244, 239, 247, 0.4);
+    transition: width 0.25s ease, height 0.25s ease, border-color 0.25s ease,
+      background-color 0.25s ease;
+  }
+  .cursor-ring.is-hovering {
+    width: 64px;
+    height: 64px;
+    border-color: var(--magenta);
+    background: rgba(212, 0, 209, 0.08);
+  }
+}
+
+/* ---- marquee ---- */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+
+/* ---- buttons ---- */
+.btn-pill {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  border-radius: 9999px;
+  overflow: hidden;
+  isolation: isolate;
+  transition: color 0.35s ease, border-color 0.35s ease;
+}
+
+.btn-pill .btn-fill {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: 9999px;
+  background: linear-gradient(100deg, var(--magenta) 0%, var(--volt) 100%);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.btn-pill:hover .btn-fill {
+  transform: scaleY(1);
+  transform-origin: top;
+}
+
+.btn-solid {
+  background: linear-gradient(100deg, var(--magenta) 0%, var(--volt) 100%);
+}
+
+/* ---- nav link underline ---- */
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  height: 1px;
+  width: 100%;
+  background: var(--magenta);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.35s cubic-bezier(0.65, 0, 0.35, 1);
+}
+.nav-link:hover::after,
+.nav-link.active::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* ---- card sheen ---- */
+.card-hover {
+  transition: border-color 0.35s ease, background-color 0.35s ease,
+    transform 0.35s ease;
+}
+.card-hover:hover {
+  border-color: rgba(212, 0, 209, 0.45);
+  background-color: rgba(212, 0, 209, 0.05);
+  transform: translateY(-4px);
+}
+
+/* split-text containers hide overflow per line */
+.line-mask {
+  overflow: hidden;
+}
+
+input,
+textarea {
+  outline: none;
+}
+input:focus,
+textarea:focus {
+  border-color: var(--magenta) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grain::after {
+    animation: none;
+  }
+}

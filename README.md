@@ -1,4 +1,4 @@
-# MyBizPush — Fable Edition
+# MyBizPush — Fable Edition.
 
 An award-style rebuild of the MyBizPush Solutions Limited site. Dark, editorial,
 kinetic — built around GSAP scroll choreography and a Three.js shader hero.

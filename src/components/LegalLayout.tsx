@@ -16,6 +16,7 @@ const CONTACT_BLOCK = [
   "RC NO: 7350200 (Nigeria)",
   "Registered in the United States of America and Nigeria",
   "Suite 300, 3rd Floor, Copper House, Plot 4 Street, Wuse Zone 5, Abuja",
+  "Product Branch Office: E2126 Apo Urban Market, Apo, Abuja",
   "Email: info@mybizpush.com",
   "Phone: +234 812 313 2609",
 ];

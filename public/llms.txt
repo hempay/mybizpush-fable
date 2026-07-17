@@ -12,14 +12,27 @@ MyBizPush Solutions Limited is a full-service business solutions company that he
 - **IT Consultation**: Technology strategy, infrastructure optimization, and digital transformation roadmaps aligned to business goals
 - **Data Analytics & Business Intelligence**: Data analysis, reporting dashboards, predictive analytics, and BI solutions to drive informed decision-making
 - **Plan Writing**: Business plans, marketing strategies, and operational plans — clear roadmaps for growth
+- **Cybersecurity Solutions**: Security audits, penetration testing, vulnerability assessments, infrastructure hardening, and incident response planning
+- **Business Process Automation**: Workflow mapping and automation of document processing, approvals, data entry, reporting, and cross-system syncing
 
 ### Design
 - **Website Design**: Modern, responsive, SEO-optimised websites built to convert visitors
 - **Graphics Design**: Logo design, brand identity, marketing materials, and digital graphics
 - **Business Branding**: Complete brand identity development — strategy, visual identity, messaging, and brand guidelines
+- **UI/UX & Digital Product Design**: User research, information architecture, wireframing, prototyping, high-fidelity interface design, and design systems
+- **Brand Campaign Strategy**: Integrated campaigns from audience research and positioning through creative concept, channel planning, rollout, and measurement
 
 ### Build
 - **App Development**: Native and cross-platform mobile applications for iOS and Android
+- **Custom Software Development**: Bespoke internal tools, operational platforms, and line-of-business systems built around your workflow
+- **Web Application Development**: Customer portals, admin dashboards, SaaS platforms, and internal tools built for performance and scale
+- **API Development & Integration**: API design, build, and documentation, plus integration of existing systems with third-party services
+- **Payment Gateway & Fintech Solutions**: Card processing, bank transfers, virtual accounts, wallets, recurring billing, reconciliation, and compliance
+- **E-Commerce Solutions**: Storefront design, product catalogue, checkout flow, payment integration, inventory sync, and shipping logistics
+- **ERP & CRM Solutions**: Platform selection, customisation, data migration, workflow configuration, training, and ongoing support
+- **Cloud Hosting & Infrastructure**: AWS, Google Cloud, and Azure architecture, migration, containerisation, CI/CD, monitoring, backups, and cost optimisation
+- **AI & Chatbot Solutions**: Support chatbots, document intelligence, recommendation engines, and AI-assisted internal tools
+- **Software Maintenance & Support**: Bug fixes, security patches, dependency updates, performance tuning, monitoring, and defined response times
 - **SEO & Ads Creation**: Search engine optimisation and high-converting ad campaigns across Google, Facebook, and more
 - **Google Mapping & Listings**: Google My Business optimisation, citation building, review management, and local SEO
 
@@ -28,16 +41,25 @@ MyBizPush Solutions Limited is a full-service business solutions company that he
 - **Social Media Management**: Strategy, content creation, community management, and performance tracking across all major platforms
 - **Account Boosting & Monetization**: Organic growth techniques, influencer partnerships, and revenue optimisation for social media
 - **Content Creation**: Blog posts, articles, videos, infographics — SEO-optimised, audience-focused
+- **Ad Tech Solutions**: Conversion tracking, pixel and server-side tagging, attribution modelling, funnels, A/B testing infrastructure, and retargeting
+- **Content Strategy & Automation Systems**: Editorial strategy, content calendars, repurposing pipelines, and automated publishing and distribution
+- **Media Analytics & Performance Tracking**: Custom dashboards, campaign attribution, audience insights, and ROI tracking across marketing and media
 
 ### Create
 - **Video Coverage & Commercials**: Full video production including commercials, corporate videos, event coverage, and promotional content
 - **Jingle Production**: Catchy, memorable audio branding — concept to final delivery
+- **Photography & Videography**: Product shoots, corporate portraits, event coverage, and brand campaign imagery with full post-production
+- **Motion Graphics & Animation**: Animated explainers, logo stings, product walkthroughs, social animations, and 2D/3D motion graphics
+- **Documentary Production**: Documentary films and brand stories from research and scripting through interviews, filming, and edit
+- **Podcast Production**: Format development, recording, editing, mixing, cover art, show notes, and distribution across major platforms
+- **Audio Production & Sound Engineering**: Recording, mixing, and mastering for music, voiceover, advertising, and film, plus sound design and restoration
 - **Music Promotion & Distribution**: Digital distribution, playlist placements, social media promotion, and marketing for musicians
 - **Artist Management**: Career planning, booking, promotion, brand development, and business strategy for artists
 
 ### Business
 - **Contracts & Proposals**: Professional business documentation — legally sound and professionally presented
 - **CAC Registrations**: Corporate Affairs Commission business registration and regulatory compliance assistance
+- **DUNS Registration**: Dun & Bradstreet D-U-N-S Number registration for Apple Developer enrolment, contracts, international trade, and business credit
 - **Training**: Digital marketing, web development, business skills, and technology training programs
 
 ## Product Portfolio

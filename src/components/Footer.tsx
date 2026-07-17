@@ -73,6 +73,11 @@ export function Footer() {
                 <br />
                 Plot 4 Street, Wuse Zone 5, Abuja
               </p>
+              <p className="text-bone/80 leading-relaxed">
+                Product Branch Office:
+                <br />
+                E2126 Apo Urban Market, Apo, Abuja
+              </p>
               <a
                 href="tel:+2348123132609"
                 className="block text-bone/80 hover:text-magenta transition-colors"

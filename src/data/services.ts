@@ -343,6 +343,14 @@ export const allServices: Service[] = [
     image: "/services/business-registrations.webp",
     tag: "Business",
   },
+  {
+    title: "ISO Training & Certification",
+    description: "Get certified to the standards clients ask for",
+    details:
+      "We guide your organisation through ISO training and certification — from gap analysis and documentation to staff training, internal audits, and liaising with certification bodies. We cover common standards including ISO 9001 (quality management), ISO 27001 (information security), and ISO 45001 (occupational health and safety), so you meet the requirements that unlock contracts and build client trust.",
+    image: "/services/training.webp",
+    tag: "Business",
+  },
 ];
 
 export const featuredServices = allServices.slice(0, 8);

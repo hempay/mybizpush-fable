@@ -66,7 +66,7 @@ MyBizPush Solutions Limited is a full-service business solutions company that he
 ## Product Portfolio
 MyBizPush builds and operates a portfolio of digital products:
 
-- **Hempay**: Multi-currency virtual cards and global payments via app, WhatsApp, or Telegram. 11 currencies, 11 cards.
+- **Hempay**: Multi-currency virtual cards and global payments via app, WhatsApp, or Telegram. 11 currencies, 11 cards. Available on the App Store: https://apps.apple.com/app/hempay/id6786330995
 - **Plemuz**: AI-native music streaming with lossless audio and artist revenue sharing. 28+ countries.
 - **Yuafomi**: International dating app with smart matching and video connections. 50+ countries.
 - **Pailop**: Stock trading app for real-time market data, portfolio management, and commodity trading.
@@ -84,6 +84,7 @@ MyBizPush builds and operates a portfolio of digital products:
 - Website: https://mybizpush.com
 - Twitter / X: @mybizpush
 - Email: mybizpush@gmail.com
+- WhatsApp: https://api.whatsapp.com/send?phone=2347079084071 (or use the form at https://mybizpush.com/whatsapp)
 
 ## Frequently Asked Questions
 

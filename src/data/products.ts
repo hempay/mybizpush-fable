@@ -35,7 +35,7 @@ export const products: Product[] = [
       { label: "Countries", value: "25+" },
       { label: "Transactions", value: "$2M+" },
     ],
-    appStore: "#",
+    appStore: "https://apps.apple.com/app/hempay/id6786330995",
     playStore: "#",
   },
   {

@@ -8,6 +8,8 @@ import React, {
 import { gsap } from "@/lib/gsap";
 import { useToast } from "@/lib/toast";
 import { getLenis } from "@/lib/SmoothScroll";
+import { buildWhatsAppLink } from "@/lib/whatsapp";
+import { WhatsAppIcon } from "./WhatsAppIcon";
 
 interface ConsultationRequest {
   id: string;
@@ -40,18 +42,22 @@ function saveLocally(request: ConsultationRequest) {
   }
 }
 
-async function sendToWebhook(data: ConsultationRequest) {
-  const WEBHOOK_URL =
-    import.meta.env.VITE_N8N_WEBHOOK_URL ||
-    "https://your-n8n-instance.com/webhook/consultation";
-  const response = await fetch(WEBHOOK_URL, {
+/**
+ * Posts the inquiry to our serverless function, which emails a confirmation to
+ * the visitor and a notification to the MyBizPush inbox via Resend.
+ */
+async function sendInquiry(data: ConsultationRequest) {
+  const response = await fetch("/api/consultation", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
-    signal: AbortSignal.timeout(8000),
+    signal: AbortSignal.timeout(15000),
   });
-  if (!response.ok) throw new Error(`Webhook failed: ${response.status}`);
-  return response.json();
+  const result = await response.json().catch(() => ({}));
+  if (!response.ok) {
+    throw new Error(result?.error || `Request failed: ${response.status}`);
+  }
+  return result;
 }
 
 const FIELDS = [
@@ -67,6 +73,7 @@ export function ConsultationProvider({
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -97,7 +104,14 @@ export function ConsultationProvider({
     }
   }, [isOpen]);
 
-  const close = () => setIsOpen(false);
+  const close = () => {
+    setIsOpen(false);
+    // Reset after the exit so the panel doesn't flash back to the empty form.
+    setTimeout(() => {
+      setSubmitted(false);
+      setFormData({ fullName: "", email: "", phoneNumber: "", message: "" });
+    }, 250);
+  };
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -109,6 +123,8 @@ export function ConsultationProvider({
 
   const setField = (field: string, value: string) =>
     setFormData((prev) => ({ ...prev, [field]: value }));
+
+  const whatsappUrl = buildWhatsAppLink(formData);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -149,24 +165,27 @@ export function ConsultationProvider({
       status: "new",
     };
 
+    // Keep a local copy either way so nothing is lost if email delivery fails.
+    saveLocally(request);
+
     try {
-      await sendToWebhook(request);
-      saveLocally(request);
+      await sendInquiry(request);
       toast({
-        title: "Consultation request submitted!",
-        description: "Thank you for your interest. We'll contact you within 24 hours.",
+        title: "Inquiry sent!",
+        description: `We've emailed a confirmation to ${request.email}. We'll be in touch within 24 hours.`,
       });
     } catch (error) {
       console.error("Submission error:", error);
-      saveLocally(request);
       toast({
-        title: "Request saved",
-        description: "Your request was saved. We'll contact you within 24 hours.",
+        title: "We couldn't email your confirmation",
+        description:
+          "Your details are saved. Reach us on WhatsApp and we'll respond right away.",
+        variant: "destructive",
       });
     } finally {
       setIsSubmitting(false);
-      setFormData({ fullName: "", email: "", phoneNumber: "", message: "" });
-      close();
+      // Either way, hand off to WhatsApp rather than leaving a dead end.
+      setSubmitted(true);
     }
   };
 
@@ -197,6 +216,42 @@ export function ConsultationProvider({
               </svg>
             </button>
 
+            {submitted ? (
+              <>
+                <p className="font-body text-xs tracking-[0.3em] uppercase text-magenta mb-3">
+                  Inquiry received
+                </p>
+                <h2 className="font-display font-bold text-3xl text-bone leading-tight mb-3">
+                  Thank you, {formData.fullName.trim().split(" ")[0] || "friend"}.
+                </h2>
+                <p className="text-ash text-sm leading-relaxed mb-8">
+                  We've sent a confirmation to{" "}
+                  <span className="text-bone">{formData.email.trim()}</span> and our
+                  team will be in touch within 24 hours.
+                </p>
+
+                <a
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-cursor
+                  className="w-full rounded-full py-4 font-display font-bold text-bone tracking-wide bg-[#25D366] hover:opacity-90 transition-opacity inline-flex items-center justify-center gap-2.5"
+                >
+                  <WhatsAppIcon size={20} /> Continue on WhatsApp
+                </a>
+                <button
+                  onClick={close}
+                  data-cursor
+                  className="w-full mt-3 rounded-full py-4 font-display font-bold text-bone tracking-wide border border-bone/25 hover:border-magenta/60 transition-colors"
+                >
+                  Close
+                </button>
+                <p className="text-[11px] text-ash/70 text-center leading-relaxed pt-4">
+                  Prefer email? Just reply to the confirmation we sent you.
+                </p>
+              </>
+            ) : (
+            <>
             <p className="font-body text-xs tracking-[0.3em] uppercase text-magenta mb-3">
               Free Consultation
             </p>
@@ -261,6 +316,26 @@ export function ConsultationProvider({
                 your information.
               </p>
             </form>
+
+            <div className="flex items-center gap-4 my-6">
+              <span className="h-px flex-1 bg-bone/10" />
+              <span className="font-body text-[10px] tracking-[0.3em] uppercase text-ash/60">
+                or
+              </span>
+              <span className="h-px flex-1 bg-bone/10" />
+            </div>
+
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-cursor
+              className="w-full rounded-full py-3.5 font-display font-bold text-sm text-bone border border-[#25D366]/50 hover:bg-[#25D366]/10 transition-colors inline-flex items-center justify-center gap-2.5"
+            >
+              <WhatsAppIcon /> Chat with us on WhatsApp
+            </a>
+            </>
+            )}
           </div>
         </div>
       )}

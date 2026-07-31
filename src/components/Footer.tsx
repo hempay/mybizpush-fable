@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useConsultation } from "./ConsultationModal";
 import { Magnetic } from "./Magnetic";
+import { WhatsAppIcon } from "./WhatsAppIcon";
 import { FadeIn } from "@/lib/anim";
 
 const socials = [
@@ -90,6 +91,12 @@ export function Footer() {
               >
                 info@mybizpush.com.ng
               </a>
+              <Link
+                to="/whatsapp"
+                className="inline-flex items-center gap-2 text-bone/80 hover:text-magenta transition-colors"
+              >
+                <WhatsAppIcon size={15} /> Chat on WhatsApp
+              </Link>
             </div>
             <div className="flex gap-5 mt-6">
               {socials.map((s) => (
@@ -116,6 +123,9 @@ export function Footer() {
               </Link>
               <Link to="/products" className="block text-bone/80 hover:text-magenta transition-colors">
                 Products
+              </Link>
+              <Link to="/whatsapp" className="block text-bone/80 hover:text-magenta transition-colors">
+                WhatsApp
               </Link>
               <a
                 href="https://mybizpush.com"

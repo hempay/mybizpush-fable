@@ -6,12 +6,14 @@ import { ToastProvider } from "@/lib/toast";
 import { Cursor } from "@/components/Cursor";
 import { Preloader } from "@/components/Preloader";
 import { ConsultationProvider } from "@/components/ConsultationModal";
+import { WhatsAppFloatingButton } from "@/components/WhatsAppFloatingButton";
 import Home from "@/pages/Home";
 import ServicesPage from "@/pages/Services";
 import ProductsPage from "@/pages/Products";
 import Privacy from "@/pages/Privacy";
 import Terms from "@/pages/Terms";
 import AdminConsultations from "@/pages/AdminConsultations";
+import WhatsAppContact from "@/pages/WhatsAppContact";
 import NotFound from "@/pages/NotFound";
 
 function ScrollReset() {
@@ -48,9 +50,11 @@ export default function App() {
             <Route path="/products" element={<ProductsPage />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/terms" element={<Terms />} />
+            <Route path="/whatsapp" element={<WhatsAppContact />} />
             <Route path="/admin/consultations" element={<AdminConsultations />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
+          <WhatsAppFloatingButton />
         </ConsultationProvider>
       </BrowserRouter>
     </ToastProvider>

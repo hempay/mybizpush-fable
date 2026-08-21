@@ -351,6 +351,14 @@ export const allServices: Service[] = [
     image: "/services/training.webp",
     tag: "Business",
   },
+  {
+    title: "Jobs & Career Consultancy",
+    description: "Land the role, then build the career behind it",
+    details:
+      "We help professionals and graduates move their careers forward — CV and cover letter writing, LinkedIn profile optimisation, interview coaching, salary negotiation, and career-path planning. We also work with employers on recruitment support, job placement, and onboarding, so the right people and the right roles actually find each other.",
+    image: "/services/it-consultation.webp",
+    tag: "Business",
+  },
 ];
 
 export const featuredServices = allServices.slice(0, 8);

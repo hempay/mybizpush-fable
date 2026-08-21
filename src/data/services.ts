@@ -80,6 +80,14 @@ export const allServices: Service[] = [
     tag: "Create",
   },
   {
+    title: "Jobs & Career Consultancy",
+    description: "Land the role, then build the career behind it",
+    details:
+      "We help professionals and graduates move their careers forward — CV and cover letter writing, LinkedIn profile optimisation, interview coaching, salary negotiation, and career-path planning. We also work with employers on recruitment support, job placement, and onboarding, so the right people and the right roles actually find each other.",
+    image: "/services/it-consultation.webp",
+    tag: "Business",
+  },
+  {
     title: "Contracts & Proposals",
     description: "Professional business documentation",
     details:
@@ -349,14 +357,6 @@ export const allServices: Service[] = [
     details:
       "We guide your organisation through ISO training and certification — from gap analysis and documentation to staff training, internal audits, and liaising with certification bodies. We cover common standards including ISO 9001 (quality management), ISO 27001 (information security), and ISO 45001 (occupational health and safety), so you meet the requirements that unlock contracts and build client trust.",
     image: "/services/training.webp",
-    tag: "Business",
-  },
-  {
-    title: "Jobs & Career Consultancy",
-    description: "Land the role, then build the career behind it",
-    details:
-      "We help professionals and graduates move their careers forward — CV and cover letter writing, LinkedIn profile optimisation, interview coaching, salary negotiation, and career-path planning. We also work with employers on recruitment support, job placement, and onboarding, so the right people and the right roles actually find each other.",
-    image: "/services/it-consultation.webp",
     tag: "Business",
   },
 ];

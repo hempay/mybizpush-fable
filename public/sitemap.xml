@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Static sitemap for MyBizPush's public routes. Referenced by
+     public/robots.txt (`Sitemap: https://mybizpush.com/sitemap.xml`), so the
+     path and host must stay in sync with that declaration. The internal
+     dashboard at /admin/consultations is intentionally excluded — it is not
+     meant to be crawled or indexed. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://mybizpush.com/</loc>
+    <lastmod>2026-10-07</lastmod>
+  </url>
+  <url>
+    <loc>https://mybizpush.com/services</loc>
+    <lastmod>2026-10-07</lastmod>
+  </url>
+  <url>
+    <loc>https://mybizpush.com/products</loc>
+    <lastmod>2026-10-07</lastmod>
+  </url>
+  <url>
+    <loc>https://mybizpush.com/whatsapp</loc>
+    <lastmod>2026-10-07</lastmod>
+  </url>
+  <url>
+    <loc>https://mybizpush.com/privacy</loc>
+    <lastmod>2026-10-07</lastmod>
+  </url>
+  <url>
+    <loc>https://mybizpush.com/terms</loc>
+    <lastmod>2026-10-07</lastmod>
+  </url>
+</urlset>
